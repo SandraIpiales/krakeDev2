@@ -12,8 +12,8 @@ let valorAPagar=precio*cantidad;
 return valorAPagar;
 }
 
-calcularTotal = function(subtotal, desccuento, iva){
-    let valorAPagar= calcularSubtotal()-calcularValorDescuento()+calcularIVA();
+calcularTotal = function(subtotal, descuento, iva){
+    let valorAPagar= subtotal-descuento+iva;
     return valorAPagar;
 
 }
