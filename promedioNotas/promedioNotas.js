@@ -10,4 +10,10 @@ calcularPromedioNotas = function(){
     promedio=calcularPromedio(valorNota1,valorNota2,valorNota3);
     promedioFormateado = promedio.toFixed(2);
     mostrarTexto("lblPromedio", promedioFormateado);
+    if(promedioFormateado>7){
+        mostrarImagen("imgResultado", "./imagenes/exito.gif");
+    }else{
+        mostrarImagen("imgResultado", "./imagenes/fracaso.gif")
+    }
+
 }
