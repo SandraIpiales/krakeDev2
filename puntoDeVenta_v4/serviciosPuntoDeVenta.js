@@ -1,7 +1,7 @@
-calcularValorDescuento = function(monto, porcentajeDescuento){
+calcularDescuento = function(monto, porcentajeDescuento){
     let valorDescuento= (monto*porcentajeDescuento)/100;
-    let valorTotal= monto-valorDescuento;
-    return valorTotal;
+
+    return valorDescuento;
 }
 calcularIVA = function(monto){
     let valorIVA= (monto*12)/100;
