@@ -10,11 +10,17 @@ calcularValorTotal = function(){
     let valorIVA;
     let valorTotal;
     //1. Recuperar el nombre del producto como String
+    nombreProducto=recuperarTexto("txtProducto");
     //2. Recuperar el precio como float
+    precioProducto= recuperarFloat("txtPrecio");
     //3. Recuperar cantidad como int
+    cantidad= recuperarInt("txtCantidad");
     //4. Recuperar el porcentaje de descuento como int
+    porcentajeDescuento= recuperarInt("txtPorcentajeDescuento");
     //4. Invocar a calcularSubtotal y el retorno guardar en la variable valorSubtotal
+    valorSubtotal=calcularSubtotal(precioProducto,cantidad);
     //5. Mostrar valorSubtotal en el componente lblSubtotal
+    mostrarTexto("lblSubtotal", valorSubtotal);
         /*
             Caso de prueba: 
                 precioProducto: 5.4  cantidad: 10
