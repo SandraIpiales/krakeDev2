@@ -5,8 +5,7 @@ calcularDescuento = function(monto, porcentajeDescuento){
 }
 calcularIVA = function(monto){
     let valorIVA= (monto*12)/100;
-    let valorConIVA= monto+valorIVA;
-    return valorConIVA;
+    return valorIVA;
 }
 calcularSubtotal = function(precio, cantidad){
 let valorAPagar=precio*cantidad;
