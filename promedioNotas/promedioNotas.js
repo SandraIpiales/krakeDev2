@@ -10,10 +10,18 @@ calcularPromedioNotas = function(){
     promedio=calcularPromedio(valorNota1,valorNota2,valorNota3);
     promedioFormateado = promedio.toFixed(2);
     mostrarTexto("lblPromedio", promedioFormateado);
-    if(promedioFormateado>7){
+    if(promedioFormateado<5 && promedioFormateado>0){
+        mostrarTexto("lblResultado", "REPROBADO");
+        mostrarImagen("imgResultado", "./imagenes/fracaso.gif");
+    }else if(promedioFormateado>=5 && promedioFormateado<=8){
+        mostrarTexto("lblResultado", "BUEN TRABAJO");
         mostrarImagen("imgResultado", "./imagenes/exito.gif");
+    }else if(promedioFormateado>8 && promedioFormateado<=10){
+        mostrarTexto("lblResultado", "EXCELENTE");
+        mostrarImagen("imgResultado", "./imagenes/excelente.gif");
     }else{
-        mostrarImagen("imgResultado", "./imagenes/fracaso.gif")
+        mostrarTexto("lblResultado", "DATOS INCORRECTOS");
+        mostrarImagen("imgResultado", "./imagenes/datosIncorrectos.gif")
     }
 
 }
