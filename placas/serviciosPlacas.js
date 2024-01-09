@@ -112,4 +112,22 @@ obtenerTipoVehiculo = function (placa) {
         }
         return tipoVehiculo;
 
+}
+obtenerDiaPicoyPlaca = function(placa){
+    let ultimaPosicion= placa.length-1;
+    let digito= placa.charAt(ultimaPosicion);
+    let dia=null;
+    if(digito==1||digito==2){
+        dia='Lunes';
+    }else if(digito==3||digito==4){
+        dia='Martes';
+    }else if(digito==5||digito==6){
+        dia='Miercoles';
+    }else if(digito==7||digito==8){
+        dia='Jueves';
+    }else if(digito==9||digito==0){
+        dia='Viernes';
     }
+    return dia;
+}
+

@@ -18,6 +18,12 @@ validarPlaca = function(){
         }else{
             mostrarTexto("lblTipo", "Tipo de Vehiculo Incorrecto");
         }
+        let picoYPlaca= obtenerDiaPicoyPlaca(placa);
+        if(picoYPlaca!=null){
+            mostrarTexto("lblDia", picoYPlaca);
+        }else{
+            mostrarTexto("lblDia", " Incorrecto");
+        }
     }else{
         mostrarTexto("lblEstructura", "ESTRUCTURA INCORRECTA");
         mostrarTexto("lblError", validarEstructura(placa));
@@ -25,6 +31,15 @@ validarPlaca = function(){
 
     }
 }
+limpiar = function(){
+    mostrarTextoEnCaja("txtPlaca", "");
+    mostrarTexto("lblEstructura", "");
+    mostrarTexto("lblError", "");
+    mostrarTexto("lblProvincia", "");
+    mostrarTexto("lblTipo", "");
+    mostrarTexto("lblDia", "");
 
+
+}
 
         
