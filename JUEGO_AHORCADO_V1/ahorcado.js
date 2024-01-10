@@ -55,8 +55,12 @@ mostrarLetra = function(letra,posicion){
 
 validar= function(letra){
     let letrasEncontradas=0;
-  
+    let letraCadena;
     for ( let i=0; i<palabraSecreta.length;i++){
-        letra=palabraSecreta.charAt(i);
+        letraCadena=palabraSecreta.charAt(i);
+        if(letraCadena==letra){
+            mostrarLetra(letra,i);
+            letrasEncontradas++;
+        }
     }
 }
