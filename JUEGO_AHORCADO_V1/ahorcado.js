@@ -1,20 +1,29 @@
 //No se olvide de respirar, mantenga la calma y demuestre lo que sabe
-let palabraSecreta='';
+let palabraSecreta;
 guardarPalabra = function(){
     let palabra = recuperarTexto('txtSecreta');
     let letra;
     let existeMayus=false;
+    let existeMin=false;
+    
     if(palabra.length==5){
         for(let i=0; i<palabra.length;i++){
             letra=palabra.charAt(i);
             if(esMayuscula(letra)){
                 existeMayus=true;
             }else{
-                alert('Ingresar una palabra de 5 letras mayúsculas');
+                existeMin=true;
             }
         }
     }
-    console.log(palabra);
+    if(existeMayus==true&existeMin==false){
+        palabraSecreta=palabra;
+        console.log(palabraSecreta);
+    }else{
+        alert('Ingresar una palabra de 5 letras mayúsculas');
+
+    }
+    
 }
 
 esMayuscula = function(caracter){
@@ -42,4 +51,12 @@ mostrarLetra = function(letra,posicion){
     }
     
 
+}
+
+validar= function(letra){
+    let letrasEncontradas=0;
+  
+    for ( let i=0; i<palabraSecreta.length;i++){
+        letra=palabraSecreta.charAt(i);
+    }
 }
