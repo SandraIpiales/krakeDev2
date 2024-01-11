@@ -12,6 +12,7 @@ ejercutarNuevo = function () {
     habilitarComponente('txtApellido');
     habilitarComponente('txtSueldo');
     habilitarComponente('btnGuardar');
+
 }
 buscarEmpleado = function (cedula) {
     let elementoEmpleado;
@@ -53,11 +54,7 @@ guardar = function () {
             if (empleadoNuevo) {
                 alert("EMPLEADO GUARDADO CORRECTAMENTE");
                 mostrarEmpleados();
-                deshabilitarComponente('txtCedula');
-                deshabilitarComponente('txtNombre');
-                deshabilitarComponente('txtApellido');
-                deshabilitarComponente('txtSueldo');
-                deshabilitarComponente('btnGuardar');
+                deshabilitarCajasTexto();
             } else {
                 alert("YA EXISTE UN EMPLEADO CON LA CEDULA: " + empleado.cedula);
 
@@ -166,15 +163,18 @@ esCedulaValido = function (cedula) {
     return valido;
 }
 
-mostrarOpcionEmpleado = function () {
-    mostrarComponente('divEmpleado');
-    ocultarComponente('divRol');
-    ocultarComponente('divResumen');
+deshabilitarCajasTexto = function () {
     deshabilitarComponente('txtCedula');
     deshabilitarComponente('txtNombre');
     deshabilitarComponente('txtApellido');
     deshabilitarComponente('txtSueldo');
     deshabilitarComponente('btnGuardar');
+}
+mostrarOpcionEmpleado = function () {
+    mostrarComponente('divEmpleado');
+    ocultarComponente('divRol');
+    ocultarComponente('divResumen');
+    deshabilitarCajasTexto();
     mostrarEmpleados();
 }
 
