@@ -42,44 +42,49 @@ guardar = function () {
     let valorApellido = recuperarTexto("txtApellido");
     let valorSueldo = recuperarFloat("txtSueldo");
     let empleadoNuevo;
-    if (esCedulaValido(valorCedula) & esNombreValido(valorNombre,'lblErrorNombre') & esApellidoValido(valorApellido,'lblErrorApellido')& esSueldoValido(valorSueldo,'lblErrorSueldo')) {
-            if(esNuevo){
-                let empleado = {}
-                empleado.cedula=valorCedula;
-                empleado.nombre=valorNombre;
-                empleado.apellido=valorApellido;
-                empleado.sueldo=valorSueldo;
-                empleadoNuevo=agregarEmpleado(empleado);
-                if(empleadoNuevo){
-                    alert("EMPLEADO GUARDADO CORRECTAMENTE");
-                    mostrarEmpleados();
-                }else{
-                    alert("YA EXISTE UN EMPLEADO CON LA CEDULA: "+ empleado.cedula);
-                    
-                }
+    if (esCedulaValido(valorCedula) & esNombreValido(valorNombre, 'lblErrorNombre') & esApellidoValido(valorApellido, 'lblErrorApellido') & esSueldoValido(valorSueldo, 'lblErrorSueldo')) {
+        if (esNuevo) {
+            let empleado = {}
+            empleado.cedula = valorCedula;
+            empleado.nombre = valorNombre;
+            empleado.apellido = valorApellido;
+            empleado.sueldo = valorSueldo;
+            empleadoNuevo = agregarEmpleado(empleado);
+            if (empleadoNuevo) {
+                alert("EMPLEADO GUARDADO CORRECTAMENTE");
+                mostrarEmpleados();
+                deshabilitarComponente('txtCedula');
+                deshabilitarComponente('txtNombre');
+                deshabilitarComponente('txtApellido');
+                deshabilitarComponente('txtSueldo');
+                deshabilitarComponente('btnGuardar');
+            } else {
+                alert("YA EXISTE UN EMPLEADO CON LA CEDULA: " + empleado.cedula);
+
             }
+        }
     }
 
 
 }
-esSueldoValido = function (sueldo,componente) {
+esSueldoValido = function (sueldo, componente) {
     let valido;
-    if ( sueldo >= 400 && sueldo <= 5000) {
+    if (sueldo >= 400 && sueldo <= 5000) {
         valido = true;
         mostrarTexto(componente, "");
     } else {
         valido = false;
-        if(isNaN(sueldo)){
+        if (isNaN(sueldo)) {
             mostrarTexto(componente, "CAMPO OBLIGATORIO");
-        }else{
+        } else {
             mostrarTexto(componente, "Sueldo entre 400.0 y 5000.0");
         }
-        
+
     }
     return valido;
 }
 
-esApellidoValido = function (apellido,componente) {
+esApellidoValido = function (apellido, componente) {
     let elementoApellido;
     let validacion = true;
     if (apellido.length >= 3) {
