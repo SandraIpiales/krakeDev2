@@ -5,6 +5,69 @@ let empleados = [
 ]
 let esNuevo = false;
 
+guardar = function () {
+    let valorCedula = recuperarTexto("txtCedula");
+    let valorNombre = recuperarTexto("txtNombre");
+    let valorApellido = recuperarTexto("txtApellido");
+    let valorSueldo = recuperarFloat("txtSueldo");
+    let empleadoNuevo;
+    if (esCedulaValido(valorCedula) & esNombreValido(valorNombre, 'lblErrorNombre') & esApellidoValido(valorApellido, 'lblErrorApellido') & esSueldoValido(valorSueldo, 'lblErrorSueldo')) {
+        if (esNuevo) {
+            let empleado = {}
+            empleado.cedula = valorCedula;
+            empleado.nombre = valorNombre;
+            empleado.apellido = valorApellido;
+            empleado.sueldo = valorSueldo;
+            empleadoNuevo = agregarEmpleado(empleado);
+            if (empleadoNuevo) {
+                alert("EMPLEADO GUARDADO CORRECTAMENTE");
+                mostrarEmpleados();
+                deshabilitarCajasTexto();
+                esNuevo=false;
+            } else {
+                alert("YA EXISTE UN EMPLEADO CON LA CEDULA: " + empleado.cedula);
+                esNuevo=false;
+            }
+        }
+        if(!esNuevo){
+            let empleadoEncontrado= buscarEmpleado(valorCedula);
+            empleadoEncontrado.nombre = valorNombre;
+            empleadoEncontrado.apellido = valorApellido;
+            empleadoEncontrado.sueldo = valorSueldo;
+            alert("EMPLEADO MODIFICADO EXITOSAMENTE");
+            mostrarEmpleados();
+        }
+        deshabilitarCajasTexto();
+    }
+
+
+}
+limpiar = function(){
+    mostrarTextoEnCaja('txtCedula',"");
+    mostrarTextoEnCaja('txtNombre',"");
+    mostrarTextoEnCaja('txtApellido',"");
+    mostrarTextoEnCaja('txtSueldo',"");
+    esNuevo=false;
+    deshabilitarCajasTexto();
+}
+ejecutarBusqueda=function(){
+    let valorCedula = recuperarTexto("txtBusquedaCedula");
+    let busqueda=buscarEmpleado(valorCedula);
+    if(busqueda==null){
+        alert("EMPLEADO NO EXISTE");
+    }else{
+        mostrarTextoEnCaja("txtCedula",busqueda.cedula);
+        mostrarTextoEnCaja("txtNombre",busqueda.nombre);
+        mostrarTextoEnCaja("txtApellido",busqueda.apellido);
+        mostrarTextoEnCaja("txtSaldo",busqueda.saldo);
+        deshabilitarComponente("txtCedula");
+        habilitarComponente("txtNombre");
+        habilitarComponente("txtApellido");
+        habilitarComponente("txtSaldo");
+        
+    }
+
+}
 ejercutarNuevo = function () {
     esNuevo = true;
     habilitarComponente('txtCedula');
@@ -37,33 +100,7 @@ agregarEmpleado = function (empleado) {
 
 }
 
-guardar = function () {
-    let valorCedula = recuperarTexto("txtCedula");
-    let valorNombre = recuperarTexto("txtNombre");
-    let valorApellido = recuperarTexto("txtApellido");
-    let valorSueldo = recuperarFloat("txtSueldo");
-    let empleadoNuevo;
-    if (esCedulaValido(valorCedula) & esNombreValido(valorNombre, 'lblErrorNombre') & esApellidoValido(valorApellido, 'lblErrorApellido') & esSueldoValido(valorSueldo, 'lblErrorSueldo')) {
-        if (esNuevo) {
-            let empleado = {}
-            empleado.cedula = valorCedula;
-            empleado.nombre = valorNombre;
-            empleado.apellido = valorApellido;
-            empleado.sueldo = valorSueldo;
-            empleadoNuevo = agregarEmpleado(empleado);
-            if (empleadoNuevo) {
-                alert("EMPLEADO GUARDADO CORRECTAMENTE");
-                mostrarEmpleados();
-                deshabilitarCajasTexto();
-            } else {
-                alert("YA EXISTE UN EMPLEADO CON LA CEDULA: " + empleado.cedula);
 
-            }
-        }
-    }
-
-
-}
 esSueldoValido = function (sueldo, componente) {
     let valido;
     if (sueldo >= 400 && sueldo <= 5000) {
