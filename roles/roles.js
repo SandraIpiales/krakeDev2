@@ -3,6 +3,16 @@ let empleados = [
     {cedula:"0914632123",nombre:"Luisa",apellido:"Gonzalez",sueldo:900.0},
     {cedula:"1001632123",nombre:"Mario",apellido:"Martinez",sueldo:400.0}
 ]
+let esNuevo=false;
+
+ejercutarNuevo= function(){
+    esNuevo=true;
+    habilitarComponente('txtCedula');
+    habilitarComponente('txtNombre');
+    habilitarComponente('txtApellido');
+    habilitarComponente('txtSueldo');
+    habilitarComponente('btnGuardar');
+}
 
 mostrarOpcionEmpleado= function(){
     mostrarComponente('divEmpleado');
