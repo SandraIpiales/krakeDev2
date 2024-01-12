@@ -4,6 +4,7 @@ let empleados = [
     { cedula: "1001632123", nombre: "Mario", apellido: "Martinez", sueldo: 400.0 }
 ]
 let esNuevo = false;
+let roles=[];
 
 guardar = function () {
     let valorCedula = recuperarTexto("txtCedula");
@@ -219,6 +220,7 @@ mostrarOpcionRol = function () {
     mostrarComponente('divRol');
     ocultarComponente('divEmpleado');
     ocultarComponente('divResumen');
+    deshabilitarComponente('btnGuardarRol');
 }
 mostrarOpcionResumen = function () {
     mostrarComponente('divResumen');
@@ -280,7 +282,63 @@ calcularRol = function(){
         valor=calcularValorAPagar(valorSueldo,valorAporte,valorDescuento);
         mostrarTexto('infoIESS',valorAporte);
         mostrarTexto("infoPago", valor);
+        habilitarComponente('btnGuardarRol');
     }
 
 }
 
+buscarRolArreglo=function(cedula){
+    let rolEncontrado;
+    let elementoRol;
+    for(let i=0;i<roles.length;i++){
+        elementoRol=roles[i];
+        if(elementoRol.cedula==cedula){
+            rolEncontrado=elementoRol;
+            break;
+        }else{
+            rolEncontrado= null;
+        }
+    }
+    return rolEncontrado;
+}
+agregarRol = function(rol){
+    let rolEncontrado=buscarRolArreglo(rol.cedula);
+    if(rolEncontrado==null){
+        roles.push(rol);
+        alert("Se agrego el Rol con Exito");
+        return true;
+    }else{
+        alert("Empleado ya existente");
+        return false;
+    }   
+    
+}
+
+calcularAporteEmpleador= function(sueldo){
+    let valorAPagar= (sueldo*11.15)/100;
+    return valorAPagar;
+}
+
+guardarRol= function(){
+    let valorAPagarEmpleador;
+    let valorAporte=recuperarTextoDiv('infoIESS');
+    let valorAPagar=recuperarTextoDiv("infoPago");
+    let valorNombre=recuperarTextoDiv('infoNombre');
+    let valorCedula=recuperarTextoDiv("infoCedula");
+    let valorSueldo=recuperarTextoDiv("infoSueldo");
+
+    valorAPagarEmpleador=calcularAporteEmpleador(valorSueldo);
+    rol={}
+
+    rol.cedula=valorCedula;
+    rol.nombre=valorNombre;
+    rol.sueldo=valorSueldo;
+    rol.valorAPagar=valorAPagar;
+    rol.aporteEmpleado=valorAporte;
+    rol.aporteEmpleador=valorAPagarEmpleador;
+    if(agregarRol(rol)==true){
+        alert("Rol Guardado con Exito");
+        deshabilitarComponente('btnGuardarRol');
+    }
+    
+}
