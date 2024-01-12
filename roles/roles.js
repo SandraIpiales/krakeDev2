@@ -246,3 +246,16 @@ mostrarEmpleados = function () {
     contenidoTabla += "</table>";
     cmpTablaEmpleados.innerHTML = contenidoTabla;
 }
+
+buscarRol = function(){
+    let valorCedula=recuperarTexto("txtBusquedaCedulaRol");
+    let empleadoEncontrado=buscarEmpleado(valorCedula);
+    if(empleadoEncontrado!=null){
+        mostrarTexto("infoCedula",empleadoEncontrado.cedula);
+        mostrarTexto("infoNombre",empleadoEncontrado.nombre+" "+empleadoEncontrado.apellido);
+        mostrarTexto("infoSueldo",empleadoEncontrado.cedula);
+        
+    }else{
+        alert("El empleado no existe");
+    }
+}
